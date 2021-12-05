@@ -44,10 +44,7 @@ const signUpValidatorHandler = (req, res, next) => {
     next();
   } else {
     unlink(
-      path.join(
-        __dirname,
-        ` /../public/uploads/avatars/${req.files[0].filename}`
-      ),
+      `C:\\Users\\88019\\Downloads\\Compressed\\Vaccination-and-HealthCare-main\\server\\public\\uploads\\avatar\\${req.files[0].filename}`,
       (err) => {
         if (err) console.log(err);
       }

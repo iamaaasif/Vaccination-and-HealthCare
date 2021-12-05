@@ -52,7 +52,7 @@ async function login(req, res, next) {
         if (req.body.usernameL == "admin") {
           res.json({ message: "admin logged in successfull... " });
         } else {
-          res.json(" user Logged in successfull");
+          res.redirect("http://localhost:3000/home");
         }
       } else {
         throw createError("Login failed, please try again. 1");

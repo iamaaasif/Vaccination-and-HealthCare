@@ -25,7 +25,7 @@ async function userRegistration(req, res, next) {
     unlink(
       path.join(
         __dirname,
-        ` /../public/uploads/avatars/${req.files[0].filename}`
+        ` /../public/uploads/avatar/${req.files[0].filename}`
       ),
       (err) => {
         if (err) console.log(err);
