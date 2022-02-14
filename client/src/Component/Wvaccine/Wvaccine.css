@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.body {
+  background-color: rgb(57, 44, 112);
+}
+.upside {
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../Photos/p.jpg);
+  background-size: cover;
+}
+.title {
+  font-size: 60px;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: 500;
+  padding-top: 50px;
+}
+.slogan {
+  padding-top: 20px;
+  font-size: 23px;
+  color: white;
+  text-align: left;
+}
+.takeinfo2 {
+  margin-top: 100px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.title23 {
+  color: green;
+  text-align: center;
+  padding: 20px;
+  font-weight: 600;
+}
+.hilite {
+  font-size: 25px;
+  color: green;
+}
+.tablePart {
+  margin-top: 40px;
+}
+.lasttitle2 {
+  position: relative;
+  top: 30px;
+  color: green;
+}

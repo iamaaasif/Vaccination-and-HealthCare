@@ -1,0 +1,198 @@
+/* Carousle part 1 start */
+.captions1 {
+  width: 550px;
+  height: 350px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 3;
+}
+.captions1 h1 {
+  font-size: 60px;
+  line-height: 80px;
+  text-align: left;
+}
+.captions1 Button {
+  position: absolute;
+  top: 420px;
+  left: 0px;
+}
+.d-block {
+  height: 720px;
+}
+.carousel-item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* Carousle part 1 end */
+
+/* Carousle part 2 start */
+.captions2 {
+  width: 550px;
+  height: 350px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 3;
+}
+.captions2 h1 {
+  font-size: 50px;
+  line-height: 80px;
+  text-align: left;
+}
+.captions2 Button {
+  position: absolute;
+  top: 400px;
+  left: 0px;
+}
+/* Carousle part 2 end */
+
+/* Carousle part 3 start */
+.captions3 {
+  width: 550px;
+  height: 350px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 3;
+}
+.captions3 h1 {
+  font-size: 50px;
+  line-height: 80px;
+  /* margin-bottom: 0px; */
+  text-align: left;
+}
+.captions3 Button {
+  position: absolute;
+  top: 400px;
+  left: 0px;
+}
+/* Carousle part 3 end */
+
+/* baby vaccine section start*/
+.about-babyvaccine {
+  width: 100%;
+  background: #dbdada;
+  height: 700px;
+  position: relative;
+}
+.babyContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.cartoon-baby {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+}
+.rounded-div {
+  background: rgb(139, 138, 138);
+  display: inline-block;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 4px 35px;
+  border-radius: 40px;
+  color: white;
+}
+.sectiontitle {
+  margin-top: 30px;
+  color: black;
+  font-weight: 650;
+  /* font-size: 18px; */
+}
+.peragrap1 {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.peragrap2 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* baby vaccine section end*/
+
+/* pregnentwomen vaccine section start*/
+.about-pregnentwomen {
+  width: 100%;
+  background: #fffbfb;
+  height: 700px;
+  position: relative;
+}
+.pregnentWomenContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin-top: 30px;
+}
+.pregnentwomen {
+  /* margin-left: 40px; */
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+}
+.rounded-div {
+  background: rgb(139, 138, 138);
+  display: inline-block;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 4px 35px;
+  border-radius: 40px;
+  color: white;
+}
+
+/* pregnentwomen vaccine section end*/
+
+/* footer section start */
+.footerSection {
+  width: 100%;
+  height: 300px;
+  background: #4b4a4a;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+.footerContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* footer section end */
+
+/* upozila vaccination center section start */
+.upozilaVaccineCenter {
+  width: 100%;
+  background: #dbdada;
+  height: 750px;
+  position: relative;
+  text-align: center;
+}
+.rounded-div-map {
+  background: rgb(139, 138, 138);
+  display: inline-block;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 4px 35px;
+  border-radius: 40px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mapImage {
+  height: 600px;
+  border: 5px solid rgb(158, 156, 156);
+}
+/* upozila vaccination center section end */
