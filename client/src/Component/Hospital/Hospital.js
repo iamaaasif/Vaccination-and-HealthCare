@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
+import Map from "./Map";
 
-class Hospital extends Component {
-  render() {
-    return <div></div>;
-  }
+function Hospital() {
+  return (
+    <div>
+      <h1>map</h1>
+      <Map />
+    </div>
+  );
 }
 
 export default Hospital;

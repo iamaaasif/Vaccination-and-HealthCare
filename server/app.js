@@ -33,8 +33,8 @@ mongoose
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
 });
-app.use("/register", registrationRouter);
-app.use("/login", loginRouter);
+app.use("/api/register", registrationRouter);
+app.use("/api/login", loginRouter);
 app.listen(process.env.PORT, () => {
   console.log(`listening at port ${process.env.PORT}`);
 });

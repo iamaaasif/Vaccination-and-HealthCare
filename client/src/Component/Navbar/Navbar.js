@@ -1,49 +1,57 @@
-
 import React, { useState } from "react";
-import {Link} from 'react-router-dom';
-import './Navbar.css';
-const Navbar = () => {
-    const [isMobile, setIsMobile] = useState(false);
-        return (
-            <nav className='navbar'>
-                <h3 className="logo">Logo</h3>
-                <ul className={isMobile? "nav-links-mobile":"nav-links"}
-                onClick={() =>setIsMobile(false)}
-                >
-                    <Link to="/home" className="home">
-                        <li>Home</li>
-                    </Link>
+import { Link } from "react-router-dom";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import "./Navbar.css";
+const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="#home">Logo</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Link className="link" to="/">
+              Home
+            </Link>
+            {isAuthenticated && (
+              <>
+                <Link className="link" to="/Bvaccine">
+                  Baby Vaccine
+                </Link>
+                <Link className="link" to="/Wvaccine">
+                  Pregnent Women Vaccine
+                </Link>
+              </>
+            )}
 
-                    <Link to="/Bvaccine" className="Bvaccine">
-                        <li>Baby Vaccine</li>
-                    </Link>
+            <Link className="link" to="/Hospital">
+              Near by Hospital
+            </Link>
+            <Link className="link" to="/Htips">
+              Health tips
+            </Link>
+          </Nav>
+          <Nav>
+            <Link className="link-last" to="/login">
+              Log In
+            </Link>
+            <Link
+              className="link-last"
+              to="/"
+              onClick={() => {
+                localStorage.removeItem("token");
+                setIsAuthenticated(false);
+                alert("Log Out Successfully");
+              }}
+            >
+              Log Out
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
 
-                    <Link to="/Wvaccine" className="Wvaccine">
-                        <li>Pregnant Women Vaccine</li>
-                    </Link>
-
-                    <Link to="/Hospital" className="Hospital">
-                        <li>Near By Hospital</li>
-                    </Link>
-
-                    <Link to="/Htips" className="Htips">
-                        <li>Health tips</li>
-                    </Link>
-
-                    <Link to="/Contact" className="Contact">
-                        <li>Contact Us</li>
-                    </Link>
-                </ul>
-                    <button className="mobile-menu-icon"
-                    onClick={() => setIsMobile(!isMobile)}
-                    >
-                        {isMobile ? (<i className="fas fa-times"></i>
-                        ) : (
-                        <i className="fas fa-bars"></i>)}
-                    </button>
-
-            </nav>
-        );
-    }
-
-export default Navbar;
+export default NavBar;

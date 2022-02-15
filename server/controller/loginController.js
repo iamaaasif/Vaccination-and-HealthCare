@@ -7,7 +7,7 @@ const User = require("../models/user");
 // do login
 async function login(req, res, next) {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     // find a user who has this email
 
     const user = await User.findOne({
@@ -37,16 +37,20 @@ async function login(req, res, next) {
         });
 
         // set cookie
-        res.cookie(process.env.COOKIE_NAME, token, {
-          maxAge: process.env.JWT_EXPIRY,
-          httpOnly: true,
-          signed: true,
+        // res.cookie(process.env.COOKIE_NAME, token, {
+        //   maxAge: process.env.JWT_EXPIRY,
+        //   httpOnly: true,
+        //   signed: true,
+        // });
+
+        res.status(200).json({
+          token,
         });
 
-        console.log("Logged In Successful");
+        // console.log("Logged In Successful");
 
-        // set logged in users local identifiers
-        res.locals.loggedInUser = userObject;
+        // // set logged in users local identifiers
+        // res.locals.loggedInUser = userObject;
         // res.locals.isLoggedIn = true;
 
         if (req.body.usernameL == "admin") {
@@ -55,21 +59,16 @@ async function login(req, res, next) {
           res.redirect("http://localhost:3000/home");
         }
       } else {
-        throw createError("Login failed, please try again. 1");
+        throw createError("Login failed, please try again.");
       }
     } else {
-      throw createError("Login failed, please try again. 2");
+      throw createError("Login failed, please try again.");
     }
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      data: {
-        usernameL: req.body.usernameL,
-      },
       errors: {
-        common: {
-          msg: err.message,
-        },
+        msg: err.message,
       },
     });
   }
