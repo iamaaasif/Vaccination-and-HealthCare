@@ -43,12 +43,12 @@ const signUpValidatorHandler = (req, res, next) => {
     // no errors
     next();
   } else {
-    unlink(
-      `C:\\Users\\88019\\Downloads\\Compressed\\Vaccination-and-HealthCare-main\\server\\public\\uploads\\avatar\\${req.files[0].filename}`,
-      (err) => {
-        if (err) console.log(err);
-      }
-    );
+    // unlink(
+    //   `C:\\Users\\88019\\Downloads\\Compressed\\Vaccination-and-HealthCare-main\\server\\public\\uploads\\avatar\\${req.files[0].filename}`,
+    //   (err) => {
+    //     if (err) console.log(err);
+    //   }
+    // );
 
     res.status(500).json({
       errors: mappedErrors,

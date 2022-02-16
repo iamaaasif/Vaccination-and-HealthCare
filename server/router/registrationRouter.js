@@ -13,7 +13,7 @@ const {
 // post
 router.post(
   "/",
-  avatarUpload,
+  // avatarUpload,
   signUpValidators,
   signUpValidatorHandler,
   userRegistration

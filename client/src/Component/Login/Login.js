@@ -8,6 +8,9 @@ import { Redirect } from "react-router-dom";
 const Login = ({ isAuthenticated, setIsAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   //reg
   const reg = (e) => {
@@ -25,7 +28,7 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
     e.preventDefault();
 
     axios
-      .post("/api/login", {
+      .post("/api/login/", {
         usernameL: username,
         passwordL: password,
       })
@@ -39,6 +42,27 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
         alert(error.response.data.errors.msg);
       });
   };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("/api/register/", {
+        username,
+        email,
+        phone,
+        password,
+        avatar,
+      })
+      .then((response) => {
+        alert(response.data.message);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        alert(err.response.data.errors.msg);
+      });
+  };
+
   if (isAuthenticated) {
     return <Redirect to="/" />;
   } else {
@@ -130,9 +154,8 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
             </h4>
             <form
               encType="multipart/form-data"
-              method="POST"
-              action="/api/register"
               id="user_registration"
+              onSubmit={handleRegister}
             >
               <>
                 <div className="row">
@@ -145,6 +168,10 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                         name="username"
                         id="username"
                         placeholder="Enter username"
+                        value={username}
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
                       />
                       <p
                         id="error-username"
@@ -159,6 +186,10 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                         name="phone"
                         id="phone"
                         placeholder="Enter phone"
+                        value={phone}
+                        onChange={(e) => {
+                          setPhone(e.target.value);
+                        }}
                       />
                       <p
                         id="error-phone"
@@ -175,6 +206,10 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                         name="email"
                         id="email"
                         placeholder="Enter email"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                       <p
                         id="error-email"
@@ -189,6 +224,10 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                         name="password"
                         id="password"
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                       <p
                         id="error-password"
@@ -205,6 +244,10 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                         className="form-control"
                         id="avater"
                         accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          setAvatar(file);
+                        }}
                       />
                       <p id="error-avater" className="avatar-error pError"></p>
                       <p className="common-error pError"></p>
