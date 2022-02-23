@@ -42,6 +42,7 @@ async function login(req, res, next) {
         //   httpOnly: true,
         //   signed: true,
         // });
+        req.user = userObject;
 
         res.status(200).json({
           token,
@@ -49,9 +50,7 @@ async function login(req, res, next) {
 
         // console.log("Logged In Successful");
 
-        // // set logged in users local identifiers
-        // res.locals.loggedInUser = userObject;
-        // res.locals.isLoggedIn = true;
+        // set logged in users local identifiers
 
         if (req.body.usernameL == "admin") {
           res.json({ message: "admin logged in successfull... " });

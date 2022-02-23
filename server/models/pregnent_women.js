@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PWSchema = mongoose.Schema({
-  nid: {
+  nationalID: {
     type: int,
     unique: true,
     required: true,
@@ -10,12 +10,13 @@ const PWSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  mop: {
+  monthOfPregnency: {
     type: String,
     required: true,
   },
   guardian_name: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: "Guardian",
   },
 });
 

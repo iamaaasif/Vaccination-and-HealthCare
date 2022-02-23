@@ -1,11 +1,11 @@
 import React from "react";
-import Map from "./Map";
+import Maps from "./Maps";
 
 function Hospital() {
   return (
     <div>
       <h1>map</h1>
-      <Map />
+      <Maps></Maps>
     </div>
   );
 }

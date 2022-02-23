@@ -2,6 +2,7 @@ import React from "react";
 import "./Bvaccine.css";
 import { Container, Form, Button, Table } from "react-bootstrap";
 import { useState } from "react";
+import axios from "axios";
 
 function Bvaccine() {
   const [showtable, setShowtable] = useState(false);
@@ -15,6 +16,44 @@ function Bvaccine() {
   const handelInputn = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    if (name === "name") {
+      setBabyReg((prev) => {
+        return {
+          name: value,
+          gender: prev.gender,
+          birthID: prev.birthID,
+          birthDate: prev.birthDate,
+        };
+      });
+    } else if (name === "gender") {
+      setBabyReg((prev) => {
+        return {
+          name: prev.name,
+          gender: value,
+          birthID: prev.birthID,
+          birthDate: prev.birthDate,
+        };
+      });
+    } else if (name === "birthID") {
+      setBabyReg((prev) => {
+        return {
+          name: prev.name,
+          gender: prev.gender,
+          birthID: value,
+          birthDate: prev.birthDate,
+        };
+      });
+    } else if (name === "birthDate") {
+      setBabyReg((prev) => {
+        return {
+          name: prev.name,
+          gender: prev.gender,
+          birthID: prev.birthID,
+          birthDate: value,
+        };
+      });
+    }
+    // console.log(babyReg);
   };
 
   return (
@@ -33,13 +72,23 @@ function Bvaccine() {
           >
             Baby Vaccine Registration
           </h2>
-          <Form>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setShowtable(true);
+              // console.log(babyReg);
+              axios
+                .post("/api/baby", babyReg)
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err));
+            }}
+          >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Baby Name</Form.Label>
               <Form.Control
                 onChange={handelInputn}
                 type="text"
-                name="babyName"
+                name="name"
                 value={babyReg.name}
                 placeholder="Enter Baby Name"
               />
@@ -61,7 +110,7 @@ function Bvaccine() {
               <Form.Control
                 onChange={handelInputn}
                 type="number"
-                name="birthCirtificateNumber"
+                name="birthID"
                 value={babyReg.birthID}
                 placeholder="Enter Birth cirtificate number"
               />
@@ -84,14 +133,7 @@ function Bvaccine() {
                 label="All the given information is Correct...!"
               />
             </Form.Group>
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                setShowtable(true);
-              }}
-              variant="primary"
-              type="submit"
-            >
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>

@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./Navbar.css";
 const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [login, setLogin] = useState(true);
+  const [logout, setLogout] = useState(false);
+  const [Authenticated, setAuthenticated] = useState(
+    localStorage.getItem("token") ? true : false
+  );
+  useEffect(() => {
+    if (Authenticated) {
+      setLogin(false);
+      setLogout(true);
+    } else {
+      setLogin(true);
+      setLogout(false);
+    }
+  }, []);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -33,20 +48,37 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
             </Link>
           </Nav>
           <Nav>
-            <Link className="link-last" to="/login">
-              Log In
-            </Link>
-            <Link
-              className="link-last"
-              to="/"
-              onClick={() => {
-                localStorage.removeItem("token");
-                setIsAuthenticated(false);
-                alert("Log Out Successfully");
-              }}
-            >
-              Log Out
-            </Link>
+            {login && (
+              <>
+                <Link
+                  className="link-last"
+                  to="/login"
+                  onClick={() => {
+                    setLogout(true);
+                    setLogin(false);
+                  }}
+                >
+                  Log In
+                </Link>
+              </>
+            )}
+            {logout && (
+              <>
+                <Link
+                  className="link-last"
+                  to="/"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setIsAuthenticated(false);
+                    alert("Log Out Successfully");
+                    setLogin(true);
+                    setLogout(false);
+                  }}
+                >
+                  Log Out
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

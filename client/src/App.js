@@ -18,12 +18,19 @@ const App = () => {
     localStorage.getItem("token") ? true : false
   );
 
+  const link = window.location.pathname;
+  const arry = link.split("/");
+  const length = arry.length;
+  const final = "/" + arry[length - 1];
+
   return (
     <Router>
-      <Navbar
-        isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
-      />
+      {final !== "/login" && (
+        <Navbar
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+        />
+      )}
       <Switch>
         <Route path="/login" component={Login} exact>
           <Login

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const BabySchema = mongoose.Schema({
-  bid: {
-    type: int,
+  birthID: {
+    type: Number,
     unique: true,
     required: true,
   },
@@ -14,7 +14,7 @@ const BabySchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  dob: {
+  birthDate: {
     type: Date,
     required: true,
   },

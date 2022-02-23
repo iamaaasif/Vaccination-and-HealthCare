@@ -16,3 +16,7 @@
 .link-last:hover {
   color: gray;
 }
+
+.navbar > .container {
+  padding: 5px 12px;
+}
