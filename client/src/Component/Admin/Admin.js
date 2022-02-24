@@ -2,8 +2,28 @@ import React from "react";
 import "./Admin.css";
 import { Container, Button, Card } from "react-bootstrap";
 import erfan from "../Photos/ErfanFormal.jpg";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Admin() {
+  const [users, setUser] = useState([]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get("/api/users", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((data) => {
+        setUser(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
   return (
     <div className="body">
       <div className="box-div">
@@ -21,23 +41,31 @@ function Admin() {
         <Container>
           <h2 className="section-title">All User Information</h2>
           <div className="All-user-container">
-            <Card
-              className="single-user-card"
-              style={{ width: "18rem", marginTop: "15px" }}
-            >
-              <Card.Img variant="top" src={erfan} style={{ height: "300px" }} />
-              <Card.Body>
-                <Card.Title>Md Erfan</Card.Title>
-                <Card.Text className="card-text">
-                  <p>Email : erfan@gmail.com</p>
-                  <p>Phone : 018928374746</p>
-                  <p>Password : 8374748</p>
-                </Card.Text>
-                <Button variant="primary" size="small">
-                  Edit Detailse
-                </Button>
-              </Card.Body>
-            </Card>
+            {users.map((user, index) => {
+              return (
+                <Card
+                  className="single-user-card"
+                  style={{ width: "18rem", marginTop: "15px" }}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={erfan}
+                    style={{ height: "300px" }}
+                  />
+                  <Card.Body>
+                    <Card.Title>{user.username}</Card.Title>
+                    <Card.Text className="card-text">
+                      <p>Email : {user.email}</p>
+                      <p>Phone : {user.phone}</p>
+                      <p>Password : {user.password}</p>
+                    </Card.Text>
+                    <Button variant="primary" size="small">
+                      Edit Detailse
+                    </Button>
+                  </Card.Body>
+                </Card>
+              );
+            })}
           </div>
         </Container>
       </section>

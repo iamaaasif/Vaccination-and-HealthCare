@@ -3,6 +3,7 @@ import "./Htips.css";
 import baby from "../Photos/takeVaccine.png";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import babyFood from "../Photos/babyFood.jpg";
+import womenfood from "../Photos/womenFood.jpg";
 
 function Htips() {
   return (
@@ -286,6 +287,82 @@ function Htips() {
             ask your baby's doctor for a referral or check with the obstetrics
             department at a local hospital.
           </p>
+        </Container>
+      </section>
+      <section>
+        <Container>
+          <div className="womenfooddiv">
+            <img className="womenfoodimg" src={womenfood} alt="womenfood" />
+          </div>
+          <h1
+            style={{
+              textAlign: "center",
+              fontSize: "40px",
+              marginTop: "20px",
+              marginBottom: "10px",
+            }}
+          >
+            36 Health Tips for a Healthy Pregnancy
+          </h1>
+          <p>1. Take a prenatal vitamin</p>
+          <p>2. Exercise regularly</p>
+          <p>3. Write a birth plan</p>
+          <p>4. Educate yourself</p>
+          <p>
+            5. Change your chores (avoid harsh or toxic cleaners, heavy lifting)
+          </p>
+          <p>6. Track your weight gain (normal weight gain is 25-35 pounds)</p>
+          <p>7. Get comfortable shoes</p>
+          <p>
+            8. Eat folate-rich foods (lentils, asparagus, oranges, fortified
+            cereals)
+          </p>
+          <p>9. Eat calcium-rich foods (dairy, canned fish, soy)</p>
+          <p>10. Eat more fish (except those high in mercury )</p>
+          <p>11. Eat foods with fiber</p>
+          <p>
+            12. Don’t eat soft cheeses (unpasteurized styles like Brie and feta
+            may contain bacteria that can cause fever, miscarriage or pregnancy
+            complications)
+          </p>
+          <p>13. Eat your veggies</p>
+          <p>14. Eat five or six well-balanced meals each day</p>
+          <p>
+            15.But don’t overeat. You only need 300-500 additional calories per
+            day. Keep a food diary.
+          </p>
+          <p>16. Limit caffeine</p>
+          <p>
+            17. Drink plenty of fluids (six 8-ounce glasses of water per day)
+          </p>
+          <p>18. Don’t drink alcohol</p>
+          <p>19. Wear sunscreen</p>
+          <p>
+            20. Fly smart (avoid air travel if possible early and late in
+            pregnancy)
+          </p>
+          <p>21. Avoid changing cat litter (to reduce risk of toxoplasmosis)</p>
+          <p>22. Give in to cravings – sometimes</p>
+          <p>23. Know when to call your doctor with concerns</p>
+          <p>24. Don’t smoke; avoid secondhand smoke</p>
+          <p>25. Get enough sleep</p>
+          <p>26. Wear your seatbelt</p>
+          <p>
+            27. Don’t take over-the-counter medications or herbal remedies
+            without medical consultation
+          </p>
+          <p>28. See your dentist</p>
+          <p>29. Take a pregnancy class</p>
+          <p>30. Baby sit a friend’s baby for some real-world experience</p>
+          <p>31. Tour birth facilities</p>
+          <p>
+            32. Practice relaxation techniques daily (yoga, stretching, deep
+            breathing, massage)
+          </p>
+          <p>33. Don’t overmedicate</p>
+          <p>34. Exercise, but don’t overdo it</p>
+          <p>35. Stretch before bed to avoid leg cramps</p>
+          <p>36. Take a picture of yourself before the baby arrives</p>
         </Container>
       </section>
     </>
