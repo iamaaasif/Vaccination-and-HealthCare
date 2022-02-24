@@ -2,13 +2,11 @@
 const express = require("express");
 
 // internal imports
-const { addBaby, getBaby } = require("../controller/babyController");
+const { getAllUsers } = require("../controller/allUserController");
 const isAuthenticated = require("../middlewares/users/isAuthenticated");
 
 const router = express.Router();
 
-// process login
-router.post("/", isAuthenticated, addBaby);
-router.get("/", isAuthenticated, getBaby);
+router.get("/", isAuthenticated, getAllUsers);
 
 module.exports = router;

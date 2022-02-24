@@ -6,6 +6,8 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [login, setLogin] = useState(true);
   const [logout, setLogout] = useState(false);
+  const [height, setHeight] = useState(false);
+  const [link, setLink] = useState("");
   const [Authenticated, setAuthenticated] = useState(
     localStorage.getItem("token") ? true : false
   );
@@ -17,6 +19,11 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
       setLogin(true);
       setLogout(false);
     }
+
+    // const link = window.location.pathname;
+    // const arry = link.split("/");
+    // const length = arry.length;
+    // setLink("/" + arry[length - 1]);
   }, []);
 
   return (

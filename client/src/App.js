@@ -10,7 +10,7 @@ import Login from "./Component/Login/Login";
 import Admin from "./Component/Admin/Admin";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PrivateRoute from "./Component/PrivateRoute";
 
 const App = () => {
@@ -18,19 +18,12 @@ const App = () => {
     localStorage.getItem("token") ? true : false
   );
 
-  const link = window.location.pathname;
-  const arry = link.split("/");
-  const length = arry.length;
-  const final = "/" + arry[length - 1];
-
   return (
     <Router>
-      {final !== "/login" && (
-        <Navbar
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated}
-        />
-      )}
+      <Navbar
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+      />
       <Switch>
         <Route path="/login" component={Login} exact>
           <Login

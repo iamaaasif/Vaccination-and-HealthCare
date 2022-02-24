@@ -2,19 +2,39 @@ import React from "react";
 import "./Wvaccine.css";
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 function Wvaccine() {
   const [womenReg, setWomenReg] = useState({
     name: "",
     nationalID: "",
-    monthOfPregnency: "",
+    monthOfPregnency: 0,
   });
 
   const handelInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    setWomenReg({ [name]: value });
+    setWomenReg({ ...womenReg, [name]: value });
     // console.log(womenReg);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+
+    axios
+      .post("/api/women", womenReg, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (
@@ -34,7 +54,7 @@ function Wvaccine() {
           >
             Pregnent Women Vaccine Registration
           </h2>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -60,7 +80,7 @@ function Wvaccine() {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Month of Pregnency</Form.Label>
               <Form.Control
-                name="monthOfP"
+                name="monthOfPregnency"
                 onChange={handelInput}
                 type="number"
                 placeholder="Enter month of pregnency"

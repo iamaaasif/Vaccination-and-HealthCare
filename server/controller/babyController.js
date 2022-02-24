@@ -2,7 +2,7 @@ const babyModel = require("../models/baby");
 const createError = require("http-errors");
 
 const getBaby = async (req, res) => {
-  //   console.log("conne");
+  console.log(req.userData);
   try {
     // console.log("sss");
     let response = await babyModel.find();
@@ -26,6 +26,7 @@ const addBaby = async (req, res) => {
     // console.log(req.body);
 
     let baby = new babyModel(req.body);
+    baby.guardian_name = req.userData.username;
     let response = await baby.save();
     res.status(200).json(response);
   } catch (err) {

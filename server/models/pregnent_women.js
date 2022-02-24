@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const PWSchema = mongoose.Schema({
   nationalID: {
-    type: int,
+    type: Number,
     unique: true,
     required: true,
   },
@@ -15,8 +15,7 @@ const PWSchema = mongoose.Schema({
     required: true,
   },
   guardian_name: {
-    type: mongoose.Types.ObjectId,
-    ref: "Guardian",
+    type: String,
   },
 });
 

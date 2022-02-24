@@ -9,6 +9,8 @@ const cookieParser = require("cookie-parser");
 const registrationRouter = require("./router/registrationRouter");
 const loginRouter = require("./router/loginRouter");
 const babyRoute = require("./router/babyRoute");
+const womenRoute = require("./router/womenRoute");
+const allUserRoute = require("./router/allUserRoute");
 
 // initialization
 
@@ -37,6 +39,8 @@ app.get("/", (req, res) => {
 app.use("/api/register", registrationRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/baby", babyRoute);
+app.use("/api/women", womenRoute);
+app.use("/api/users", allUserRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`listening at port ${process.env.PORT}`);
