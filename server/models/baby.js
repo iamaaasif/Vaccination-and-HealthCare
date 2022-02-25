@@ -18,6 +18,7 @@ const BabySchema = mongoose.Schema({
     type: Date,
     required: true,
   },
+  vaccines: [],
   guardian_name: {
     type: String,
   },

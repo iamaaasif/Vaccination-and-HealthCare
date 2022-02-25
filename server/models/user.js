@@ -20,6 +20,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  refresh_token: {
+    type: String,
+    default: "",
+  },
   avatar: {
     type: String,
   },

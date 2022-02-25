@@ -1,6 +1,9 @@
 const babyModel = require("../models/baby");
-const createError = require("http-errors");
-
+const { createEventForBaby } = require("./eventController");
+const expressAsyncHandler = require("express-async-handler");
+const { google } = require("googleapis");
+const oauth2Client = require("../utilities/google/OAuth2");
+const User = require("../models/user");
 const getBaby = async (req, res) => {
   console.log(req.userData);
   try {
@@ -14,7 +17,7 @@ const getBaby = async (req, res) => {
   }
 };
 
-const addBaby = async (req, res) => {
+const addBaby = async (req, res, next) => {
   //   console.log(req.body);
   try {
     // console.log(req.body);
@@ -28,6 +31,7 @@ const addBaby = async (req, res) => {
     let baby = new babyModel(req.body);
     baby.guardian_name = req.userData.username;
     let response = await baby.save();
+    createEventForBaby(req, res, next);
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({

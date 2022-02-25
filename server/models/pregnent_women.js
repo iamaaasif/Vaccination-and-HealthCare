@@ -14,6 +14,7 @@ const PWSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  vaccines: [],
   guardian_name: {
     type: String,
   },

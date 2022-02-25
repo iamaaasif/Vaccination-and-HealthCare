@@ -1,17 +1,63 @@
-import React from "react";
-import "./Bvaccine.css";
-import { Container, Form, Button, Table } from "react-bootstrap";
-import { useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Form, Table } from "react-bootstrap";
+import { GoogleLogin } from "react-google-login";
+import "./Bvaccine.css";
 
 function Bvaccine() {
   const [showtable, setShowtable] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
   const [babyReg, setBabyReg] = useState({
     name: "",
     gender: "",
     birthID: "",
     birthDate: "",
   });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get("/api/event/token/refresh", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setHasToken(true);
+        } else {
+          setHasToken(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const responseGoogle = (response) => {
+    const token = localStorage.getItem("token");
+    const { code } = response;
+
+    axios
+      .post(
+        "/api/event/token/create",
+        { code },
+        {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Token ${token}`,
+          },
+        }
+      )
+      .then((resp) => {
+        console.log(resp.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+  const errorGoogle = (error) => {
+    console.log(error);
+  };
 
   const handelInputn = (e) => {
     let name = e.target.name;
@@ -72,71 +118,106 @@ function Bvaccine() {
           >
             Baby Vaccine Registration
           </h2>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setShowtable(true);
-              // console.log(babyReg);
-              axios
-                .post("/api/baby", babyReg)
-                .then((res) => console.log(res))
-                .catch((err) => console.log(err));
-            }}
-          >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Baby Name</Form.Label>
-              <Form.Control
-                onChange={handelInputn}
-                type="text"
-                name="name"
-                value={babyReg.name}
-                placeholder="Enter Baby Name"
-              />
-            </Form.Group>
+          {!hasToken ? (
+            <GoogleLogin
+              clientId="YOUR CLient ID"
+              buttonText="Authorize Google Calender"
+              onSuccess={responseGoogle}
+              onFailure={errorGoogle}
+              cookiePolicy="single_host_origin"
+              responseType="code"
+              accessType="offline"
+              scope="openid email profile https://www.googleapis.com/auth/calendar"
+            ></GoogleLogin>
+          ) : (
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setShowtable(true);
+                // console.log(babyReg);
+                const token = localStorage.getItem("token");
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Gender</Form.Label>
-              <Form.Control
-                onChange={handelInputn}
-                type="text"
-                name="gender"
-                value={babyReg.gender}
-                placeholder="Enter Gender"
-              />
-            </Form.Group>
+                axios
+                  .post("/api/baby", babyReg, {
+                    headers: {
+                      Authorization: `Token ${token}`,
+                    },
+                  })
+                  .then((response) => {
+                    setBabyReg({
+                      name: "",
+                      gender: "",
+                      birthID: "",
+                      birthDate: "",
+                    });
+                    alert("Successfully Added!");
+                  })
+                  .catch((err) => console.log(err));
 
-            <Form.Group className="mb-3" controlId="formBasicmail">
-              <Form.Label>Birth Cirtificate Number</Form.Label>
-              <Form.Control
-                onChange={handelInputn}
-                type="number"
-                name="birthID"
-                value={babyReg.birthID}
-                placeholder="Enter Birth cirtificate number"
-              />
-            </Form.Group>
+                // axios
+                //   .post("/api/event/baby/create", {
+                //     headers: {
+                //       Authorization: `Token ${token}`,
+                //     },
+                //   })
+                //   .catch((err) => console.log(err));
+              }}
+            >
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Baby Name</Form.Label>
+                <Form.Control
+                  onChange={handelInputn}
+                  type="text"
+                  name="name"
+                  value={babyReg.name}
+                  placeholder="Enter Baby Name"
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Birth Date</Form.Label>
-              <Form.Control
-                onChange={handelInputn}
-                type="date"
-                name="birthDate"
-                value={babyReg.birthDate}
-                placeholder="Birth Date"
-              />
-            </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Gender</Form.Label>
+                <Form.Control
+                  onChange={handelInputn}
+                  type="text"
+                  name="gender"
+                  value={babyReg.gender}
+                  placeholder="Enter Gender"
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="All the given information is Correct...!"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
+              <Form.Group className="mb-3" controlId="formBasicmail">
+                <Form.Label>Birth Cirtificate Number</Form.Label>
+                <Form.Control
+                  onChange={handelInputn}
+                  type="number"
+                  name="birthID"
+                  value={babyReg.birthID}
+                  placeholder="Enter Birth cirtificate number"
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Birth Date</Form.Label>
+                <Form.Control
+                  onChange={handelInputn}
+                  type="date"
+                  name="birthDate"
+                  value={babyReg.birthDate}
+                  placeholder="Birth Date"
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check
+                  type="checkbox"
+                  label="All the given information is Correct...!"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          )}
         </div>
         {showtable && (
           <>

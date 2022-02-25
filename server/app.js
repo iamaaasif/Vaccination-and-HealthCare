@@ -11,6 +11,7 @@ const loginRouter = require("./router/loginRouter");
 const babyRoute = require("./router/babyRoute");
 const womenRoute = require("./router/womenRoute");
 const allUserRoute = require("./router/allUserRoute");
+const eventRouter = require("./router/eventRouter");
 
 // initialization
 
@@ -41,6 +42,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/baby", babyRoute);
 app.use("/api/women", womenRoute);
 app.use("/api/users", allUserRoute);
+app.use("/api/event", eventRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`listening at port ${process.env.PORT}`);

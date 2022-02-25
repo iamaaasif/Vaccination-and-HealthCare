@@ -1,6 +1,6 @@
 const Woman = require("../models/pregnent_women");
 const mongoose = require("mongoose");
-
+const { createEventForPW } = require("./eventController");
 const addWoman = (req, res, next) => {
   const newWoman = new Woman({
     ...req.body,
@@ -11,6 +11,7 @@ const addWoman = (req, res, next) => {
   newWoman
     .save()
     .then((result) => {
+      createEventForPW(req, res, next);
       res.status(201).json({
         result,
       });
