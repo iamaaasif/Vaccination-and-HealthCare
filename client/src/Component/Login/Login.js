@@ -61,6 +61,11 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
         console.log(err.response);
         alert(err.response.data.errors.msg);
       });
+
+    setUsername("");
+    setPassword("");
+    setPhone("");
+    setEmail("");
   };
 
   if (isAuthenticated) {

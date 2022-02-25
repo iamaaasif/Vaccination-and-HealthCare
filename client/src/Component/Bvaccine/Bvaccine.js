@@ -81,6 +81,13 @@ function Bvaccine() {
                 .post("/api/baby", babyReg)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err));
+
+              setBabyReg({
+                name: "",
+                gender: "",
+                birthID: "",
+                birthDate: "",
+              });
             }}
           >
             <Form.Group className="mb-3" controlId="formBasicEmail">

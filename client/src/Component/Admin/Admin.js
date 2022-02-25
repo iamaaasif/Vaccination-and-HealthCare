@@ -7,6 +7,7 @@ import axios from "axios";
 
 function Admin() {
   const [users, setUser] = useState([]);
+  const [baby, setbaby] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -22,6 +23,20 @@ function Admin() {
       })
       .catch((error) => {
         console.error("Error:", error);
+      });
+
+    axios
+      .get("/api/baby", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((data) => {
+        setbaby(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   }, []);
   return (
@@ -73,36 +88,25 @@ function Admin() {
         <Container>
           <h2 className="section-title">Registerd Baby Vaccine Service</h2>
           <div className="All-baby-container">
-            <Card
-              className="single-baby-card"
-              border="secondary"
-              style={{ width: "18rem" }}
-            >
-              <Card.Header>Gardian Name</Card.Header>
-              <Card.Body>
-                <Card.Title>Baby Name</Card.Title>
-                <Card.Text>
-                  <p>Birth ID : 9377483927</p>
-                  <p>Birth Date : 12/04/2384</p>
-                  <p>Gender : Male</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card
-              className="single-baby-card"
-              border="secondary"
-              style={{ width: "18rem" }}
-            >
-              <Card.Header>Gardian Name</Card.Header>
-              <Card.Body>
-                <Card.Title>Baby Name</Card.Title>
-                <Card.Text>
-                  <p>Birth ID : 9377483927</p>
-                  <p>Birth Date : 12/04/2384</p>
-                  <p>Gender : Male</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            {baby.map((baby, index) => {
+              return (
+                <Card
+                  className="single-baby-card"
+                  border="secondary"
+                  style={{ width: "18rem" }}
+                >
+                  <Card.Header>{baby.username}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>{baby.name}</Card.Title>
+                    <Card.Text>
+                      <p>Birth ID : {baby.birthID}</p>
+                      <p>Birth Date : {baby.birthDate}</p>
+                      <p>Gender : {baby.gender}</p>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
           </div>
         </Container>
       </section>
