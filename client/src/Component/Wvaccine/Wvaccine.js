@@ -7,6 +7,7 @@ import "./Wvaccine.css";
 function Wvaccine() {
   const [hasToken, setHasToken] = useState(false);
   const [showtable, setShowtable] = useState(false);
+  const [women, setwomen] = useState([]);
   const [womenReg, setWomenReg] = useState({
     name: "",
     nationalID: "",
@@ -65,7 +66,7 @@ function Wvaccine() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowtable(true);
+
     const token = localStorage.getItem("token");
 
     axios
@@ -75,7 +76,9 @@ function Wvaccine() {
         },
       })
       .then((response) => {
+        setwomen(response);
         alert("Succefully Added!");
+        setShowtable(true);
         setWomenReg({
           name: "",
           nationalID: "",
@@ -177,12 +180,20 @@ function Wvaccine() {
                 <tbody>
                   <tr>
                     <td>1 - TT Vaccine</td>
-                    <td>17/02/22</td>
+                    <td>
+                      {new Date(
+                        women.data.result.vaccines[0].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                   </tr>
                   <tr>
                     <td>2 - MR Vaccine</td>
-                    <td>28/03/22</td>
+                    <td>
+                      {new Date(
+                        women.data.result.vaccines[1].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                   </tr>
                 </tbody>

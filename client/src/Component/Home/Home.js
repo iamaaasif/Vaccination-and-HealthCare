@@ -204,7 +204,10 @@ function Home() {
           </Row>
         </Container>
       </section>
-      <section className="upozilaVaccineCenter">
+      <section
+        className="upozilaVaccineCenter"
+        // style={{ marginBottom: "15px" }}
+      >
         <Container>
           <Row>
             <Col xs={12}>

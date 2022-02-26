@@ -134,7 +134,7 @@ function Bvaccine() {
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
-                setShowtable(true);
+
                 // console.log(babyReg);
                 const token = localStorage.getItem("token");
 
@@ -145,6 +145,8 @@ function Bvaccine() {
                     },
                   })
                   .then((response) => {
+                    setbabydate(response);
+                    console.log(response);
                     setBabyReg({
                       name: "",
                       gender: "",
@@ -152,6 +154,7 @@ function Bvaccine() {
                       birthDate: "",
                     });
                     alert("Successfully Added!");
+                    setShowtable(true);
                   })
                   .catch((err) => console.log(err));
 
@@ -163,19 +166,21 @@ function Bvaccine() {
                 //   })
                 //   .catch((err) => console.log(err));
 
-                axios
-                  .get("/api/baby", {
-                    headers: {
-                      Authorization: `Token ${token}`,
-                    },
-                  })
-                  .then((data) => {
-                    setbabydate(data.data);
-                    console.log(data.data);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
+                // axios
+                //   .get("/api/baby", {
+                //     headers: {
+                //       Authorization: `Token ${token}`,
+                //     },
+                //   })
+                //   .then((data) => {
+                //     const res = data.data;
+                //     const length = res.length;
+                //     setbabydate(res[length - 1]);
+                //     console.log(babydate);
+                //   })
+                //   .catch((error) => {
+                //     console.log(error);
+                //   });
               }}
             >
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -251,48 +256,109 @@ function Bvaccine() {
                 <tbody>
                   <tr>
                     <td>1 - BCG Vaccine</td>
-                    <td>17/02/22</td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[0].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                     <td>N/A</td>
                     <td>N/A</td>
                   </tr>
                   <tr>
                     <td>2 - Pentavalent Vaccine</td>
-                    <td>28/03/22</td>
-                    <td>26/04/22</td>
-                    <td>24/05/22</td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[1].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[5].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[9].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                   </tr>
                   <tr>
                     <td>3 - Pneumococcal Vaccine</td>
-                    <td>28/03/22</td>
-                    <td>26/04/22</td>
-                    <td>24/05/22</td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[1].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[5].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[9].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                   </tr>
                   <tr>
                     <td>4 - Oral Polio Vaccine</td>
-                    <td>28/03/22</td>
-                    <td>26/04/22</td>
-                    <td>24/05/22</td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[1].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[5].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[9].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                   </tr>
                   <tr>
                     <td>5 - Rota Virus Vaccine</td>
-                    <td>28/03/22</td>
-                    <td>26/04/22</td>
-                    <td>24/05/22</td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[1].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[5].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[9].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                   </tr>
                   <tr>
                     <td>6 - Measles Rubella Vaccine</td>
-                    <td>16/11/22</td>
-                    <td>16/05/23</td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[12].vaccine_date
+                      ).toDateString()}
+                    </td>
+                    <td>
+                      {new Date(
+                        babydate.data.vaccines[13].vaccine_date
+                      ).toDateString()}
+                    </td>
                     <td>N/A</td>
                     <td>N/A</td>
                   </tr>
                 </tbody>
               </Table>
+              )}
             </div>
           </>
         )}

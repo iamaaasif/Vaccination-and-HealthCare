@@ -140,7 +140,11 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
           </div>
         </div>
 
-        <div className="regWrapper py-2" id="reg">
+        <div
+          style={{ marginTop: "150px" }}
+          className="regWrapper py-2"
+          id="reg"
+        >
           <div style={{ textAlign: "center", padding: "20px" }}>
             <img src={Creg} alt="login" height="170px" />
           </div>

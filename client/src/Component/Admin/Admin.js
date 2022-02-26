@@ -55,7 +55,7 @@ function Admin() {
       });
   }, []);
   return (
-    <div className="body">
+    <div className="body" style={{ background: "#eeeeee" }}>
       <div className="box-div">
         <Container className="top-title">
           <div>
