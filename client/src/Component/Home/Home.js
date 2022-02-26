@@ -33,7 +33,12 @@ function Home() {
                 size="lg"
                 variant="success"
               >
-                Read More
+                <a
+                  href="https://www.cdc.gov/vaccines/schedules/easy-to-read/child-easyread.html"
+                  target="_blank"
+                >
+                  Read More
+                </a>
               </Button>
             </Carousel.Caption>
           </Carousel.Item>
@@ -55,7 +60,12 @@ function Home() {
                 size="lg"
                 variant="success"
               >
-                Read More
+                <a
+                  href="https://www.cdc.gov/vaccinesafety/concerns/vaccines-during-pregnancy.html"
+                  target="_blank"
+                >
+                  Read More
+                </a>
               </Button>
             </Carousel.Caption>
           </Carousel.Item>
@@ -78,7 +88,12 @@ function Home() {
                 size="lg"
                 variant="success"
               >
-                Read More
+                <a
+                  href="https://www.parents.com/baby/care/american-baby-how-tos/newborn-baby-boot-camp/"
+                  target="_blank"
+                >
+                  Read More
+                </a>
               </Button>
             </Carousel.Caption>
           </Carousel.Item>
@@ -126,7 +141,12 @@ function Home() {
                 size="lg"
                 variant="success"
               >
-                Learn More
+                <a
+                  href="https://news.llu.edu/health-wellness/why-do-babies-need-so-many-vaccines"
+                  target="_blank"
+                >
+                  Read More
+                </a>
               </Button>
             </Col>
           </Row>
@@ -166,7 +186,12 @@ function Home() {
                 size="lg"
                 variant="success"
               >
-                Learn More
+                <a
+                  href="https://my.clevelandclinic.org/health/articles/9758-vaccination-during-pregnancy"
+                  target="_blank"
+                >
+                  Read More
+                </a>
               </Button>
             </Col>
             <Col xs={12} md={6}>

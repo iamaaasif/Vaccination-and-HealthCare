@@ -120,7 +120,7 @@ function Bvaccine() {
           </h2>
           {!hasToken ? (
             <GoogleLogin
-              clientId="YOUR CLient ID"
+              clientId="296997425060-tv4bnocreosptgp2fn01ttk2r54o332f.apps.googleusercontent.com"
               buttonText="Authorize Google Calender"
               onSuccess={responseGoogle}
               onFailure={errorGoogle}

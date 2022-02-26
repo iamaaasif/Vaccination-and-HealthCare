@@ -7,6 +7,7 @@ import axios from "axios";
 
 function Admin() {
   const [users, setUser] = useState([]);
+  const [baby, setbaby] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -18,10 +19,24 @@ function Admin() {
       })
       .then((data) => {
         setUser(data.data);
-        console.log(data.data);
+        // console.log(data.data);
       })
       .catch((error) => {
         console.error("Error:", error);
+      });
+
+    axios
+      .get("/api/baby", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((data) => {
+        setbaby(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
   return (
@@ -30,10 +45,10 @@ function Admin() {
         <Container className="top-title">
           <div>
             <h2>Welcome To Admin Panel</h2>
-            <h5>Total User 5</h5>
+            <h5>Total User {users.length}</h5>
           </div>
           <div>
-            <Button variant="outline-secondary">Log Out</Button>
+            {/* <Button variant="outline-secondary">Log Out</Button> */}
           </div>
         </Container>
       </div>
@@ -47,17 +62,17 @@ function Admin() {
                   className="single-user-card"
                   style={{ width: "18rem", marginTop: "15px" }}
                 >
-                  <Card.Img
+                  {/* <Card.Img
                     variant="top"
                     src={erfan}
                     style={{ height: "300px" }}
-                  />
+                  /> */}
                   <Card.Body>
                     <Card.Title>{user.username}</Card.Title>
                     <Card.Text className="card-text">
                       <p>Email : {user.email}</p>
                       <p>Phone : {user.phone}</p>
-                      <p>Password : {user.password}</p>
+                      {/* <p>Password : {user.password}</p> */}
                     </Card.Text>
                     <Button variant="primary" size="small">
                       Edit Detailse

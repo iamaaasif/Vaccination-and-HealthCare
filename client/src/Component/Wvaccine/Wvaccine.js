@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Table } from "react-bootstrap";
 import { GoogleLogin } from "react-google-login";
 import "./Wvaccine.css";
 
 function Wvaccine() {
   const [hasToken, setHasToken] = useState(false);
+  const [showtable, setShowtable] = useState(false);
   const [womenReg, setWomenReg] = useState({
     name: "",
     nationalID: "",
@@ -64,7 +65,7 @@ function Wvaccine() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setShowtable(true);
     const token = localStorage.getItem("token");
 
     axios
@@ -105,7 +106,7 @@ function Wvaccine() {
           </h2>
           {!hasToken ? (
             <GoogleLogin
-              clientId="Your Client ID"
+              clientId="296997425060-tv4bnocreosptgp2fn01ttk2r54o332f.apps.googleusercontent.com"
               buttonText="Authorize Google Calender"
               onSuccess={responseGoogle}
               onFailure={errorGoogle}
@@ -161,6 +162,34 @@ function Wvaccine() {
             </Form>
           )}
         </div>
+        {showtable && (
+          <>
+            <div style={{ marginBottom: "30px" }}>
+              <h2 style={{ marginBottom: "20px" }}>Expected Vaccine date</h2>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Vaccine Name</th>
+                    <th>1st Dose</th>
+                    <th>2nd Dose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1 - TT Vaccine</td>
+                    <td>17/02/22</td>
+                    <td>N/A</td>
+                  </tr>
+                  <tr>
+                    <td>2 - MR Vaccine</td>
+                    <td>28/03/22</td>
+                    <td>N/A</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+          </>
+        )}
       </Container>
     </>
   );

@@ -197,3 +197,10 @@
   border: 5px solid rgb(158, 156, 156);
 }
 /* upozila vaccination center section end */
+.ReadMore a {
+  text-decoration: none;
+  color: white;
+}
+.ReadMore a:hover {
+  color: white;
+}
