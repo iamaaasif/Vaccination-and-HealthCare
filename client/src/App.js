@@ -1,17 +1,17 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Admin from "./Component/Admin/Admin";
 import Bvaccine from "./Component/Bvaccine/Bvaccine";
+import Contact from "./Component/Contact/Contact";
 import Home from "./Component/Home/Home";
-import Wvaccine from "./Component/Wvaccine/Wvaccine";
 import Hospital from "./Component/Hospital/Hospital";
 import Htips from "./Component/Htips/Htips";
-import Contact from "./Component/Contact/Contact";
-import Navbar from "./Component/Navbar/Navbar";
 import Login from "./Component/Login/Login";
-import Admin from "./Component/Admin/Admin";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
+import Navbar from "./Component/Navbar/Navbar";
 import PrivateRoute from "./Component/PrivateRoute";
+import Wvaccine from "./Component/Wvaccine/Wvaccine";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -29,7 +29,7 @@ const App = () => {
           <Login
             isAuthenticated={isAuthenticated}
             setIsAuthenticated={setIsAuthenticated}
-          />{" "}
+          />
         </Route>
         <Route path="/admin" component={Admin} exact>
           <Admin />{" "}

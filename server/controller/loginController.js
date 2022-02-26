@@ -22,7 +22,7 @@ async function login(req, res, next) {
         req.body.passwordL,
         user.password
       );
-      console.log(isValidPasswored);
+      // console.log(isValidPasswored);
       if (isValidPasswored) {
         // prepare the user object to generate token
         const userObject = {
@@ -52,11 +52,11 @@ async function login(req, res, next) {
 
         // set logged in users local identifiers
 
-        if (req.body.usernameL == "admin") {
-          res.json({ message: "admin logged in successfull... " });
-        } else {
-          // res.redirect("http://localhost:3000/home");
-        }
+        // if (req.body.usernameL == "admin") {
+        //   res.json({ message: "admin logged in successfull... " });
+        // } else {
+        //   // res.redirect("http://localhost:3000/home");
+        // }
       } else {
         throw createError("Login failed, please try again.");
       }

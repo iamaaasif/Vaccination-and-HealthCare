@@ -26,14 +26,12 @@ const addWoman = (req, res, next) => {
 
 const getWomen = (req, res, next) => {
   Woman.find().then((response) => {
-    res
-      .status(200)
-      .json(response)
-      .catch((err) => {
-        res.status(500).json({
-          err,
-        });
-      });
+    res.status(200).json(response);
+    // .catch((err) => {
+    //   res.status(500).json({
+    //     err,
+    //   });
+    // });
   });
 };
 

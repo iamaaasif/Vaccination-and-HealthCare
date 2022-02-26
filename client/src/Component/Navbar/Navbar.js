@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -8,11 +8,13 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [logout, setLogout] = useState(false);
   const [height, setHeight] = useState(false);
   const [link, setLink] = useState("");
-  const [Authenticated, setAuthenticated] = useState(
-    localStorage.getItem("token") ? true : false
-  );
+  // const [Authenticated, setAuthenticated] = useState(
+  //   localStorage.getItem("token") ? true : false
+  // );
+
+  let history = useHistory();
   useEffect(() => {
-    if (Authenticated) {
+    if (isAuthenticated) {
       setLogin(false);
       setLogout(true);
     } else {
@@ -24,7 +26,7 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
     // const arry = link.split("/");
     // const length = arry.length;
     // setLink("/" + arry[length - 1]);
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

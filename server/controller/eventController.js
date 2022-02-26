@@ -106,8 +106,8 @@ const createEventForBaby = expressAsyncHandler(async (req, res, next) => {
     // res.send(response);
   } catch (error) {
     console.log(error);
-    res.status(500);
-    res.send({ message: "There was some issue!" });
+    // res.status(500);
+    // res.send({ message: "There was some issue!" });
   }
 });
 // @desc create an event in google calandar
@@ -156,8 +156,8 @@ const createEventForPW = expressAsyncHandler(async (req, res, next) => {
     // res.send(response);
   } catch (error) {
     console.log(error);
-    res.status(500);
-    res.send({ message: "There was some issue!" });
+    // res.status(500);
+    // res.send({ message: "There was some issue!" });
   }
 });
 module.exports = {
