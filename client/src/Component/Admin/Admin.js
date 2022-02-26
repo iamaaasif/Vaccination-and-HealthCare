@@ -8,6 +8,7 @@ import axios from "axios";
 function Admin() {
   const [users, setUser] = useState([]);
   const [baby, setbaby] = useState([]);
+  const [womens, setwomens] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -33,6 +34,20 @@ function Admin() {
       })
       .then((data) => {
         setbaby(data.data);
+        // console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get("/api/women", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((data) => {
+        setwomens(data.data);
         console.log(data.data);
       })
       .catch((error) => {
@@ -88,36 +103,25 @@ function Admin() {
         <Container>
           <h2 className="section-title">Registerd Baby Vaccine Service</h2>
           <div className="All-baby-container">
-            <Card
-              className="single-baby-card"
-              border="secondary"
-              style={{ width: "18rem" }}
-            >
-              <Card.Header>Gardian Name</Card.Header>
-              <Card.Body>
-                <Card.Title>Baby Name</Card.Title>
-                <Card.Text>
-                  <p>Birth ID : 9377483927</p>
-                  <p>Birth Date : 12/04/2384</p>
-                  <p>Gender : Male</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card
-              className="single-baby-card"
-              border="secondary"
-              style={{ width: "18rem" }}
-            >
-              <Card.Header>Gardian Name</Card.Header>
-              <Card.Body>
-                <Card.Title>Baby Name</Card.Title>
-                <Card.Text>
-                  <p>Birth ID : 9377483927</p>
-                  <p>Birth Date : 12/04/2384</p>
-                  <p>Gender : Male</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            {baby.map((b, index) => {
+              return (
+                <Card
+                  className="single-baby-card"
+                  border="secondary"
+                  style={{ width: "18rem" }}
+                >
+                  <Card.Header>{b.guardian_name}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>{b.name}</Card.Title>
+                    <Card.Text>
+                      <p>Birth ID : {b.birthID}</p>
+                      <p>Birth Date : {b.birthDate}</p>
+                      <p>Gender : {b.gender}</p>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
           </div>
         </Container>
       </section>
@@ -127,36 +131,24 @@ function Admin() {
             Registerd Pregnent Women Vaccine Service
           </h2>
           <div className="All-women-container">
-            <Card
-              className="single-women-card"
-              border="secondary"
-              style={{ width: "18rem" }}
-            >
-              <Card.Header>Gardian Name</Card.Header>
-              <Card.Body>
-                <Card.Title>Women Name</Card.Title>
-                <Card.Text>
-                  <p>Birth ID : 9377483927</p>
-                  <p>Birth Date : 12/04/2384</p>
-                  <p>Gender : Male</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card
-              className="single-baby-card"
-              border="secondary"
-              style={{ width: "18rem" }}
-            >
-              <Card.Header>Gardian Name</Card.Header>
-              <Card.Body>
-                <Card.Title>Baby Name</Card.Title>
-                <Card.Text>
-                  <p>Birth ID : 9377483927</p>
-                  <p>Birth Date : 12/04/2384</p>
-                  <p>Gender : Male</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            {womens.map((w, index) => {
+              return (
+                <Card
+                  className="single-women-card"
+                  border="secondary"
+                  style={{ width: "18rem" }}
+                >
+                  <Card.Header>{w.guardian_name}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>{w.name}</Card.Title>
+                    <Card.Text>
+                      <p>National ID : {w.nationalID}</p>
+                      <p>Month of Pregnency : {w.monthOfPregnency}</p>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
           </div>
         </Container>
       </section>

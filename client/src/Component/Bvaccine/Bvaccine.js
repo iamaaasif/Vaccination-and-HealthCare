@@ -6,6 +6,7 @@ import "./Bvaccine.css";
 
 function Bvaccine() {
   const [showtable, setShowtable] = useState(false);
+  const [babydate, setbabydate] = useState([]);
   const [hasToken, setHasToken] = useState(false);
   const [babyReg, setBabyReg] = useState({
     name: "",
@@ -161,6 +162,20 @@ function Bvaccine() {
                 //     },
                 //   })
                 //   .catch((err) => console.log(err));
+
+                axios
+                  .get("/api/baby", {
+                    headers: {
+                      Authorization: `Token ${token}`,
+                    },
+                  })
+                  .then((data) => {
+                    setbabydate(data.data);
+                    console.log(data.data);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
               }}
             >
               <Form.Group className="mb-3" controlId="formBasicEmail">
