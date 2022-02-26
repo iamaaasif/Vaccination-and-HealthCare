@@ -1,22 +1,31 @@
-import { Component } from "react";
-import { Map, GoogleApiWrapper, MapContainer } from "google-maps-react";
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Hospital extends Component {
+  static defaultProps = {
+    center: {
+      lat: 23.849983,
+      lng: 90.258125,
+    },
+    zoom: 11,
+  };
+
   render() {
     return (
-      <Map
-        google={this.props.google}
-        style={{ width: "100%", height: "100%" }}
-        zoom={10}
-        initialCenter={{
-          lat: 23.849983,
-          lng: 90.258125,
-        }}
-      />
+      // Important! Always set the container height explicitly
+      <div style={{ height: "100vh", width: "100%" }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "AIzaSyBa2ngwbdYzLNtr2Lc-No_UwlHZmtcjepo" }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        >
+          <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+        </GoogleMapReact>
+      </div>
     );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyBa2ngwbdYzLNtr2Lc-No_UwlHZmtcjepo",
-})(MapContainer);
+export default Hospital;
