@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
-import "./login.css";
+import { Redirect, useHistory } from "react-router-dom";
 import LogInImg from "../Photos/clogin.svg";
 import Creg from "../Photos/creg.svg";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+import "./login.css";
 
 const Login = ({ isAuthenticated, setIsAuthenticated }) => {
   const [username, setUsername] = useState("");
@@ -11,7 +11,7 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [avatar, setAvatar] = useState("");
-
+  const history = useHistory();
   //reg
   const reg = (e) => {
     e.preventDefault();
@@ -36,6 +36,9 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
         const token = response.data.token;
         localStorage.setItem("token", token);
         setIsAuthenticated(true);
+        if (username === "admin") {
+          history.push("/admin");
+        }
       })
       .catch((error) => {
         console.log(error.response.data);

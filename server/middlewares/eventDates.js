@@ -1,10 +1,6 @@
 const datesForBabyVaccine = (req, res, next) => {
   const { name, gender, birthID, birthDate } = req.body;
-  console.log(birthDate);
   const b_date = new Date(birthDate);
-  console.log(b_date);
-
-  console.log(b_date.setDate(b_date.getDate() + 42));
 
   const vaccination_info = {
     name,
