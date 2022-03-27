@@ -44,6 +44,6 @@ app.use("/api/women", womenRoute);
 app.use("/api/users", allUserRoute);
 app.use("/api/event", eventRouter);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`listening at port ${process.env.PORT}`);
 });

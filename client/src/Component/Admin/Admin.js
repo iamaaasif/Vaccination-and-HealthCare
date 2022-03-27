@@ -156,14 +156,19 @@ function Admin() {
             <h5>Total User {users.length}</h5>
           </div>
           <div>
-            {/* <Button
+            <Button
               variant="outline-secondary"
               onClick={() => {
-                // window.location.href = "http://localhost:3000/login";
+                localStorage.removeItem("token");
+                // setIsAuthenticated(false);
+                alert("Log Out Successfully");
+                // setLogin(true);
+                // setLogout(false);
+                window.location.href = "http://localhost:3000/";
               }}
             >
               Log Out
-            </Button> */}
+            </Button>
           </div>
         </Container>
       </div>

@@ -35,7 +35,41 @@ const getWomen = (req, res, next) => {
   });
 };
 
+const updateWomen = async (req, res, next) => {
+  try {
+    const response = await Woman.findOneAndUpdate(
+      { _id: req.params._id },
+      {
+        $set: req.body,
+      }
+    );
+
+    res.status(200).json({
+      response: "update successfully",
+    });
+  } catch (err) {
+    res.status(500).json({
+      err,
+    });
+  }
+};
+const deleteWomen = async (req, res, next) => {
+  try {
+    const response = await Woman.findByIdAndDelete({ _id: req.params._id });
+
+    res.status(200).json({
+      response: "delete successfully",
+    });
+  } catch (err) {
+    res.status(500).json({
+      err,
+    });
+  }
+};
+
 module.exports = {
   addWoman,
   getWomen,
+  updateWomen,
+  deleteWomen,
 };

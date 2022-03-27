@@ -39,5 +39,36 @@ const addBaby = async (req, res, next) => {
     });
   }
 };
+const updateBaby = async (req, res, next) => {
+  try {
+    const response = await babyModel.findOneAndUpdate(
+      { _id: req.params._id },
+      {
+        $set: req.body,
+      }
+    );
 
-module.exports = { addBaby, getBaby };
+    res.status(200).json({
+      response: "update successfully",
+    });
+  } catch (err) {
+    res.status(500).json({
+      err,
+    });
+  }
+};
+const deleteBaby = async (req, res, next) => {
+  try {
+    const response = await babyModel.findByIdAndDelete({ _id: req.params._id });
+
+    res.status(200).json({
+      response: "delete successfully",
+    });
+  } catch (err) {
+    res.status(500).json({
+      err,
+    });
+  }
+};
+
+module.exports = { deleteBaby, addBaby, getBaby, updateBaby };

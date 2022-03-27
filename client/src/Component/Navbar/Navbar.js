@@ -64,7 +64,7 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
                   onClick={() => {
                     setLogout(true);
                     setLogin(false);
-                    window.location.href = "http://localhost:3000/";
+                    window.location.href = "http://localhost:3000/login";
                   }}
                 >
                   Log In
@@ -81,7 +81,7 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
                     alert("Log Out Successfully");
                     setLogin(true);
                     setLogout(false);
-                    window.location.href = "http://localhost:3000/login";
+                    window.location.href = "http://localhost:3000/";
                   }}
                 >
                   Log Out

@@ -29,7 +29,8 @@ const App = () => {
 
   return (
     <Router>
-      {window.location.pathname === "/login" ? null : (
+      {window.location.pathname === "/login" ||
+      window.location.pathname === "/admin" ? null : (
         <Navbar
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
