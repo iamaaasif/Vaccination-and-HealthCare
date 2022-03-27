@@ -1,6 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Admin from "./Component/Admin/Admin";
 import Bvaccine from "./Component/Bvaccine/Bvaccine";
@@ -18,12 +24,17 @@ const App = () => {
     localStorage.getItem("token") ? true : false
   );
 
+  // useEffect(() => {}, []);
+  // console.log(window.location.pathname);
+
   return (
     <Router>
-      <Navbar
-        isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
-      />
+      {window.location.pathname === "/login" ? null : (
+        <Navbar
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+        />
+      )}
       <Switch>
         <Route path="/login" component={Login} exact>
           <Login

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
@@ -12,7 +12,7 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
   //   localStorage.getItem("token") ? true : false
   // );
 
-  let history = useHistory();
+  // let history = useHistory();
   useEffect(() => {
     if (isAuthenticated) {
       setLogin(false);
@@ -21,7 +21,6 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
       setLogin(true);
       setLogout(false);
     }
-
     // const link = window.location.pathname;
     // const arry = link.split("/");
     // const length = arry.length;
@@ -59,33 +58,34 @@ const NavBar = ({ isAuthenticated, setIsAuthenticated }) => {
           <Nav>
             {login && (
               <>
-                <Link
+                <Button
                   className="link-last"
                   to="/login"
                   onClick={() => {
                     setLogout(true);
                     setLogin(false);
+                    window.location.href = "http://localhost:3000/";
                   }}
                 >
                   Log In
-                </Link>
+                </Button>
               </>
             )}
             {logout && (
               <>
-                <Link
+                <Button
                   className="link-last"
-                  to="/"
                   onClick={() => {
                     localStorage.removeItem("token");
                     setIsAuthenticated(false);
                     alert("Log Out Successfully");
                     setLogin(true);
                     setLogout(false);
+                    window.location.href = "http://localhost:3000/login";
                   }}
                 >
                   Log Out
-                </Link>
+                </Button>
               </>
             )}
           </Nav>

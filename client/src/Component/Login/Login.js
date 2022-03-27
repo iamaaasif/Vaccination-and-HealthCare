@@ -37,8 +37,10 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
         localStorage.setItem("token", token);
         setIsAuthenticated(true);
         if (username === "admin") {
-          history.push("/admin");
+          window.location.href = "http://localhost:3000/admin";
+          return 0;
         }
+        window.location.href = "http://localhost:3000/";
       })
       .catch((error) => {
         console.log(error.response.data);
